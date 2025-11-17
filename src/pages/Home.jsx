@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
-import { link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useQuery } from "react-query";
 import { productsAPI } from "../services/api";
 import ProductCard from '../components/Products/ProductCard'
@@ -18,23 +18,23 @@ const Home = ()=> {
                         <section className="hero-section">
                                 <Container>
                                         <Row className="align-items-center">
-                                                <col lg={6}>
+                                                <Col lg={6}>
                                                 <h1 className="display-4 fw-bold mb-4">
                                                         Welcome to Our Temu Commerce
                                                         </h1>
                                                         <p className="lead mb-4">
                                                         Discover amazing products at great prices. Shop with confidence and enjoy fast delivery and excellent customer service.
                                                         </p> 
-                                                                <button as={link}
+                                                                <Button as={Link}
                                                                         to="/products"
                                                                         varient="light"
                                                                         size="lg"
                                                                         >
                                                                          Shop Now
                                                                         
-                                                                </button>
-                                                </col>
-                                                <col lg={6}>
+                                                                </Button>
+                                                </Col>
+                                                <Col lg={6}>
                                                 <div className="text-center">
                                                         <img 
                                                         src="/images/hero-image.png" 
@@ -45,7 +45,7 @@ const Home = ()=> {
                                                         />
 
                                                 </div>
-                                                </col>
+                                                </Col>
                                         </Row>
                                 </Container>
 
@@ -55,30 +55,30 @@ const Home = ()=> {
                         <section className="py-5">
                                 <Container>
                                         <Row className="mb-4">
-                                                <col>
+                                                <Col>
                                                 <h2 className="text-center">Featured Products</h2>
                                                 <p className="text-center text-muted">Check out our most popular products
 
                                                 </p>
-                                                </col>
+                                                </Col>
                                         </Row>
                                         {isloading ? (
                                                 <LoadingSpinner/>
                                         ) :(
                                                 <Row>
                                                         {featuredProducts?.data?.results?.map(product =>(
-                                                                <col key={product.id} lg={3} md={6} className="mb-4">
+                                                                <Col key={product.id} lg={3} md={6} className="mb-4">
                                                                         <ProductCard product={product}/>
-                                                                </col>
+                                                                </Col>
                                                         ))}
                                                 </Row>
                                         )}
                                         <Row className="mt-4">
-                                                <col className="text-center">
-                                                <button as={link} to="/products" varient="outline-primary">
+                                                <Col className="text-center">
+                                                <Button as={Link} to="/products" varient="outline-primary">
                                                 View All Products
-                                                </button>
-                                                </col>
+                                                </Button>
+                                                </Col>
                                         </Row>
                                 </Container>
 
@@ -88,21 +88,22 @@ const Home = ()=> {
                         <section className="py-5 bg-light">
                                 <Container>
                                         <Row>
-                                                <col md={4} className="text-container mb-4">
-                                                <card className="border-0 bg-transparent">
+                                                <Col md={4} className="text-container mb-4">
+                                                <Card className="border-0 bg-transparent">
                                                         <Card.Body>
+
                                                                 <div className="mb-3">
                                                                         <span style={{ fontSize: '3rem'}}>CAR-ICON</span>
 
                                                                 </div>
-                                                                <card.Title>Fast Delivery</card.Title>
+                                                                <Card.Title>Fast Delivery</Card.Title>
                                                                 <Card.Text>
                                                                         Free shipping on orders over $50. Fast and reliable delivery to your doorstep.
                                                                 </Card.Text>
                                                         </Card.Body>
-                                                </card>
-                                                </col>
-                                                <col md={4} className="text-center mb-4">
+                                                </Card>
+                                                </Col>
+                                                <Col md={4} className="text-center mb-4">
                                                 <Card className="border-0 bg-transparent">
                                                         <Card.Body>
                                                                 <div className="mb-3">
@@ -115,8 +116,10 @@ const Home = ()=> {
                                                                 </Card.Text>
                                                         </Card.Body>
                                                 </Card>
-                                                </col>
-                                                <Col md={4} className="text-center mb-4">
+                                                </Col>
+                                                
+                                                <Col md=
+                                                {4} className="text-center mb-4">
                                                 <Card className="border-0 bg-transparent">
                                                         <Card.Body>
                                                                 <div className="mb-3">
@@ -129,6 +132,7 @@ const Home = ()=> {
                                                                 </Card.Text>
                                                         </Card.Body>
                                                 </Card>
+                                                
                                                 </Col>
                                         </Row>
                                 </Container>

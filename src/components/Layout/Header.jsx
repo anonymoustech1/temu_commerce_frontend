@@ -1,40 +1,51 @@
 import React from 'react'
 import { Navbar, Nav, Container, Badge, Dropdown } from 'react-bootstrap'
-import { link, useNavigate } from 'react-router-dom'
-import { useAuth } from  '../../context/AuthContext'
-import { useCart } from '../../context/AuthContext'
-import './Header.css'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from "../../context/AuthContext";
+import { useCart } from "../../context/CartContext";
+import "./Header.css";
+
+
+
+
+const Header = () => {
+        
+        const { user, logout, isAuthenticated } = useAuth()
+        const { cartItemsCount } = useCart()
+        const navigate = useNavigate()
 
 const handlelogout = () => {
         logout()
         navigate('/')
-}
-return (
+
+}        
+
+        return (
         <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
                 <Container>
-                        <Navbar.Brand as={link} to="/">
+                        <Navbar.Brand as={Link} to="/">
                         Temu Commerce
                         </Navbar.Brand>
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                        <nav className='me-auto'>
-                                <nav.link as={link} to="/">Home</nav.link>
-                                <nav.link as={link} to="/products">Products</nav.link>
-                                <nav.link as={link} to="/categories">Categories</nav.link>
-                        </nav>
+                        <Nav className='me-auto'>
+                                <Nav.Link as={Link} to="/">Home</Nav.Link>
+                                <Nav.Link as={Link} to="/products">Products</Nav.Link>
+                                <Nav.Link as={Link} to="/categories">Categories</Nav.Link>
+                        </Nav>
 
                         <Nav>
                                 {isAuthenticated ? (
                                         <>
-                                        <nav.link as={link} to="/cart" className="position-relative">
+                                        <Nav.Link as={Link} to="/cart" className="position-relative">
                                         Cart
                                         {cartItemsCount > 0 && (
                                                 <Badge bg="danger" className="cart-badge">
                                                         {cartItemsCount}
                                                 </Badge>
                                         )}
-                                        </nav.link>   
+                                        </Nav.Link>   
 
                                         <Dropdown align="end">
                                                 <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
@@ -42,19 +53,19 @@ return (
                                                 </Dropdown.Toggle>
 
                                                 <Dropdown.Menu>
-                                                        <Dropdown.Item as={link} to="/profile">
+                                                        <Dropdown.Item as={Link} to="/profile">
                                                         Profile
                                                         </Dropdown.Item>
-                                                        <Dropdown.Item as={link} to="/orders">
+                                                        <Dropdown.Item as={Link} to="/orders">
                                                         My Orders
                                                         </Dropdown.Item>
                                                         {user?.user_type === 'vendor' && (
-                                                        <Dropdown.Item as={link} to="/vendor/dashboard">
+                                                        <Dropdown.Item as={Link} to="/vendor/dashboard">
                                                                 Vendor Dashboard 
                                                         </Dropdown.Item>
                                                         )}
                                                         <Dropdown.Divider />
-                                                        <Dropdown.Item onClick={handleLogout}>
+                                                        <Dropdown.Item onClick={handlelogout}>
                                                                 Logout
                                                         </Dropdown.Item>
                                                 </Dropdown.Menu>
@@ -62,8 +73,8 @@ return (
                                         </>
                                 ):(
                                         <>
-                                        <nav.link as={link} to="/login">Login</nav.link>
-                                        <nav.link as={link} to="/register">Register</nav.link>
+                                        <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                                        <Nav.Link as={Link} to="/register">Register</Nav.Link>
                                         </>
                                 )}
                         </Nav>
@@ -71,6 +82,8 @@ return (
                 </Container>
 
         </Navbar>
-)
+        )
+}
+
 
 export default Header

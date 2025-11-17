@@ -1,8 +1,8 @@
 import React from "react";
-import { Card, Button, Badge } from 'react-bootstrap'
+import { Card, Badge } from 'react-bootstrap';
+import { useCart } from "../../context/CartContext";
 import { Link } from "react-router-dom";
-import { useCart } from '../../context/.CartContext'
-import { preinitModule } from "react-dom";
+
 
 const ProductCard = ({ product }) => {
     const { addToCart } = useCart()
@@ -15,8 +15,8 @@ const ProductCard = ({ product }) => {
 
     return (
         <Card className="product-card h-100">
-            <link to={`/products/${product.slug}`} style={{ textDecoration: 'none', color: 'inherit'}}>
-                <Card.img
+            <Link to={`/products/${product.slug}`} style={{ textDecoration: 'none', color: 'inherit'}}>
+                <Card.Img
                 variant="top"
                 src={product.primary_image?.image || '/images/placeholder.jpg'}
                 className="product-image"
@@ -70,7 +70,7 @@ const ProductCard = ({ product }) => {
                     </div>
                 </Card.Body>
                 
-            </link>
+            </Link>
         </Card>
     )
 }
